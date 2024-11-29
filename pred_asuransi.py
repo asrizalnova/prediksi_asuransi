@@ -100,7 +100,7 @@ elif menu == "Prediksi":
 
     # Input data
     age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1, value=None)
-    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f", value=None)
+    bmi = st.number_input('Masukkan BMI (Body Mass Index(Cara hitung BMI : BB(kg) : TB(m2)))', min_value=0.0, step=0.1, format="%.1f", value=None)
     children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1, value=None)
 
     # Dropdown untuk jenis kelamin
