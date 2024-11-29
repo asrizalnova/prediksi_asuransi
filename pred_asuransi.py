@@ -99,9 +99,9 @@ elif menu == "Prediksi":
     st.subheader('Masukkan Data untuk Prediksi Biaya')
 
     # Input data
-    age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1, placeholder="Masukkan umur Anda")
-    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f", placeholder="Masukkan BMI Anda")
-    children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1, placeholder="Masukkan jumlah anak")
+    age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1, value=None)
+    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f", value=None)
+    children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1, value=None)
 
     # Dropdown untuk jenis kelamin
     sex = st.selectbox(
@@ -126,11 +126,13 @@ elif menu == "Prediksi":
 
     # Prediksi
     if st.button('Predict'):
-        predict = model.predict(
-            [[age, sex_value, bmi, children, smoker_value, region_value]]
-        )
-        st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
-
+        if age is None or bmi is None or children is None:
+            st.error("Harap isi semua data sebelum melakukan prediksi!")
+        else:
+            predict = model.predict(
+                [[age, sex_value, bmi, children, smoker_value, region_value]]
+            )
+            st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
 
 # Algoritma Page - Menjelaskan Algoritma yang Digunakan
 elif menu == "Algoritma":
