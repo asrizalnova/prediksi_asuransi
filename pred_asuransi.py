@@ -99,9 +99,9 @@ elif menu == "Prediksi":
     st.subheader('Masukkan Data untuk Prediksi Biaya')
 
     # Input data
-    age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1)
-    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f")
-    children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1)
+    age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1, placeholder="Masukkan umur Anda")
+    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f", placeholder="Masukkan BMI Anda")
+    children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1, placeholder="Masukkan jumlah anak")
 
     # Dropdown untuk jenis kelamin
     sex = st.selectbox(
@@ -130,6 +130,7 @@ elif menu == "Prediksi":
             [[age, sex_value, bmi, children, smoker_value, region_value]]
         )
         st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
+
 
 # Algoritma Page - Menjelaskan Algoritma yang Digunakan
 elif menu == "Algoritma":
