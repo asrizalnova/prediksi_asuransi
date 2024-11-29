@@ -14,7 +14,7 @@ df = pd.read_csv('insurance.csv')
 st.title('Prediksi Biaya Medis')
 
 # Dropdown Navbar di Sidebar
-menu = st.sidebar.selectbox("Pilih Halaman", 
+menu = st.sidebar.selectbox("Pilih Menu", 
                             ["Home", "Dataset", "Visualisasi", "Prediksi", "Algoritma"])
 
 # Home Page - Deskripsi Aplikasi
