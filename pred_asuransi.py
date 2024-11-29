@@ -95,7 +95,7 @@ elif menu == "Visualisasi":
     st.pyplot(plt.gcf())
 
 # Prediksi Page - Input Data dan Prediksi
-if menu == "Prediksi":
+elif menu == "Prediksi":
     st.subheader('Masukkan Data untuk Prediksi Biaya')
 
     # Input data
@@ -106,49 +106,30 @@ if menu == "Prediksi":
     # Dropdown untuk jenis kelamin
     sex = st.selectbox(
         'Pilih Jenis Kelamin',
-        options=['Silahkan pilih jenis kelamin', 'Perempuan', 'Laki-laki'],
-        index=0  # Menjadikan opsi pertama sebagai default
+        options=['Perempuan', 'Laki-laki']
     )
-
-    if sex == 'Silahkan pilih jenis kelamin':
-        sex_value = None
-    else:
-        sex_value = 0 if sex == 'Perempuan' else 1
+    sex_value = 0 if sex == 'Perempuan' else 1
 
     # Dropdown untuk status merokok
     smoker = st.selectbox(
         'Apakah Anda Merokok?',
-        options=['Silahkan pilih status merokok', 'Tidak Merokok', 'Merokok'],
-        index=0
+        options=['Tidak Merokok', 'Merokok']
     )
-
-    if smoker == 'Silahkan pilih status merokok':
-        smoker_value = None
-    else:
-        smoker_value = 0 if smoker == 'Tidak Merokok' else 1
+    smoker_value = 0 if smoker == 'Tidak Merokok' else 1
 
     # Dropdown untuk wilayah
     region = st.selectbox(
         'Pilih Wilayah',
-        options=['Silahkan pilih wilayah', 'Northeast', 'Northwest', 'Southeast', 'Southwest'],
-        index=0
+        options=['Northeast', 'Northwest', 'Southeast', 'Southwest']
     )
-
-    if region == 'Silahkan pilih wilayah':
-        region_value = None
-    else:
-        region_value = {'Northeast': 0, 'Northwest': 1, 'Southeast': 2, 'Southwest': 3}[region]
+    region_value = {'Northeast': 0, 'Northwest': 1, 'Southeast': 2, 'Southwest': 3}[region]
 
     # Prediksi
     if st.button('Predict'):
-        if sex_value is None or smoker_value is None or region_value is None:
-            st.error('Mohon lengkapi semua input sebelum melakukan prediksi!')
-        else:
-            predict = model.predict(
-                [[age, sex_value, bmi, children, smoker_value, region_value]]
-            )
-            st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
-
+        predict = model.predict(
+            [[age, sex_value, bmi, children, smoker_value, region_value]]
+        )
+        st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
 
 # Algoritma Page - Menjelaskan Algoritma yang Digunakan
 elif menu == "Algoritma":
