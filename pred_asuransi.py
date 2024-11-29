@@ -26,7 +26,7 @@ if menu == "Home":
     """)
     st.header('Nama Pembuat')
     st.write('Nama : Asrizal Nova Akhsanu')
-     st.write('NPM : 223307036')
+    st.write('NPM : 223307036')
 
 # Dataset Page - Menampilkan Dataset
 elif menu == "Dataset":
