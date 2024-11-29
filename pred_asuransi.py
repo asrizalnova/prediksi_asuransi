@@ -25,7 +25,8 @@ if menu == "Home":
         seperti umur, jenis kelamin, BMI, jumlah anak, kebiasaan merokok, dan wilayah tempat tinggal.
     """)
     st.header('Nama Pembuat')
-    st.write('Aplikasi ini dibuat oleh: Asrizal Nova Akhsanu')
+    st.write('Nama : Asrizal Nova Akhsanu')
+     st.write('NPM : 223307036')
 
 # Dataset Page - Menampilkan Dataset
 elif menu == "Dataset":
