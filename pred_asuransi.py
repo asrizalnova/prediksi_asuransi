@@ -95,61 +95,59 @@ elif menu == "Visualisasi":
     st.pyplot(plt.gcf())
 
 # Prediksi Page - Input Data dan Prediksi
-elif menu == "Prediksi":
+if menu == "Prediksi":
     st.subheader('Masukkan Data untuk Prediksi Biaya')
 
     # Input data
     age = st.number_input('Masukkan Umur (tahun)', min_value=0, max_value=120, step=1)
-    bmi = st.number_input('Masukkan BMI (Body Mass Index, dengan emnghitung BB(kg):TB(M2)', min_value=0.0, step=0.1, format="%.1f")
+    bmi = st.number_input('Masukkan BMI (Body Mass Index)', min_value=0.0, step=0.1, format="%.1f")
     children = st.number_input('Masukkan Banyak Anak', min_value=0, max_value=10, step=1)
 
     # Dropdown untuk jenis kelamin
-   sex = st.selectbox(
-    'Pilih Jenis Kelamin',
-    options=['Silahkan pilih jenis kelamin', 'Perempuan', 'Laki-laki'],
-    index=0  # Menjadikan opsi pertama sebagai default
-)
+    sex = st.selectbox(
+        'Pilih Jenis Kelamin',
+        options=['Silahkan pilih jenis kelamin', 'Perempuan', 'Laki-laki'],
+        index=0  # Menjadikan opsi pertama sebagai default
+    )
 
-# Validasi input
-if sex == 'Silahkan pilih jenis kelamin':
-    sex_value = None  # Tanda bahwa input belum valid
-else:
-    sex_value = 0 if sex == 'Perempuan' else 1
-
+    if sex == 'Silahkan pilih jenis kelamin':
+        sex_value = None
+    else:
+        sex_value = 0 if sex == 'Perempuan' else 1
 
     # Dropdown untuk status merokok
     smoker = st.selectbox(
-    'Apakah Anda Merokok?',
-    options=['Silahkan pilih status merokok', 'Tidak Merokok', 'Merokok'],
-    index=0
-)
+        'Apakah Anda Merokok?',
+        options=['Silahkan pilih status merokok', 'Tidak Merokok', 'Merokok'],
+        index=0
+    )
 
-if smoker == 'Silahkan pilih status merokok':
-    smoker_value = None
-else:
-    smoker_value = 0 if smoker == 'Tidak Merokok' else 1
-
+    if smoker == 'Silahkan pilih status merokok':
+        smoker_value = None
+    else:
+        smoker_value = 0 if smoker == 'Tidak Merokok' else 1
 
     # Dropdown untuk wilayah
     region = st.selectbox(
-    'Pilih Wilayah',
-    options=['Silahkan pilih wilayah', 'Northeast', 'Northwest', 'Southeast', 'Southwest'],
-    index=0
-)
+        'Pilih Wilayah',
+        options=['Silahkan pilih wilayah', 'Northeast', 'Northwest', 'Southeast', 'Southwest'],
+        index=0
+    )
 
-if region == 'Silahkan pilih wilayah':
-    region_value = None
-else:
-    region_value = {'Northeast': 0, 'Northwest': 1, 'Southeast': 2, 'Southwest': 3}[region]
-
-if st.button('Predict'):
-    if sex_value is None or smoker_value is None or region_value is None:
-        st.error('Mohon lengkapi semua input sebelum melakukan prediksi!')
+    if region == 'Silahkan pilih wilayah':
+        region_value = None
     else:
-        predict = model.predict(
-            [[age, sex_value, bmi, children, smoker_value, region_value]]
-        )
-        st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
+        region_value = {'Northeast': 0, 'Northwest': 1, 'Southeast': 2, 'Southwest': 3}[region]
+
+    # Prediksi
+    if st.button('Predict'):
+        if sex_value is None or smoker_value is None or region_value is None:
+            st.error('Mohon lengkapi semua input sebelum melakukan prediksi!')
+        else:
+            predict = model.predict(
+                [[age, sex_value, bmi, children, smoker_value, region_value]]
+            )
+            st.success(f'Prediksi Biaya Asuransi: ${predict[0]:,.2f}')
 
 
 # Algoritma Page - Menjelaskan Algoritma yang Digunakan
