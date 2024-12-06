@@ -176,18 +176,6 @@ elif menu == "Algoritma":
            - Model diuji pada data pengujian menggunakan metrik seperti *Mean Squared Error (MSE)* dan *R² Score*.
     """)
 
-    # Contoh visualisasi hubungan linear sederhana
-    st.subheader('Visualisasi Hubungan Linear (Contoh)')
-    st.write("""
-        Berikut adalah contoh hubungan linear antara BMI dan biaya asuransi, di mana faktor lain seperti status merokok 
-        juga memengaruhi pola data.
-    """)
-    plt.figure(figsize=(8, 5))
-    sns.regplot(data=df, x='bmi', y='charges', scatter_kws={'alpha': 0.5}, line_kws={'color': 'red'})
-    plt.title('Hubungan BMI dan Charges')
-    plt.xlabel('BMI')
-    plt.ylabel('Charges')
-    st.pyplot(plt.gcf())
 
     # Kelebihan dan kekurangan regresi linear
     st.subheader('Kelebihan dan Kekurangan Regresi Linear')
