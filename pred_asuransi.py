@@ -161,20 +161,6 @@ elif menu == "Algoritma":
         - **Wilayah**: Lokasi tempat tinggal individu.
     """)
 
-    # Formula dasar regresi linear
-    st.subheader('Formula Regresi Linear')
-    st.latex(r'''
-        y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon
-    ''')
-    st.write("""
-        Di mana:
-        - **y**: Prediksi nilai (biaya asuransi dalam kasus ini).
-        - **x₁, x₂, ..., xₙ**: Fitur input (umur, BMI, dll.).
-        - **β₀**: Intersep atau konstanta model.
-        - **β₁, β₂, ..., βₙ**: Koefisien regresi (menunjukkan pengaruh tiap fitur pada prediksi).
-        - **ε**: Galat atau noise, yaitu bagian dari data yang tidak dijelaskan oleh model.
-    """)
-
     # Langkah-langkah membangun model
     st.subheader('Langkah-langkah Membuat Model')
     st.write("""
