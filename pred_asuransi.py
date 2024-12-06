@@ -138,9 +138,66 @@ elif menu == "Prediksi":
 # Algoritma Page - Menjelaskan Algoritma yang Digunakan
 elif menu == "Algoritma":
     st.header('Overview Algoritma yang Digunakan')
+    
+    # Penjelasan dasar tentang algoritma
+    st.subheader('Apa itu Regresi Linear?')
     st.write("""
-        Model ini menggunakan algoritma regresi linear untuk memprediksi biaya asuransi berdasarkan faktor-faktor yang diberikan. 
-        Proses pelatihan model dilakukan dengan memisahkan dataset menjadi fitur dan target, 
-        kemudian menggunakan algoritma regresi linear untuk membuat model prediksi. 
-        Model ini dilatih dengan dataset yang berisi informasi seperti umur, jenis kelamin, BMI, jumlah anak, status merokok, dan wilayah.
+        Regresi linear adalah salah satu algoritma pembelajaran mesin yang paling sederhana 
+        dan paling sering digunakan untuk masalah prediksi kuantitatif. Model ini bekerja dengan
+        mencoba menemukan hubungan linear antara variabel independen (fitur) dan variabel dependen (target).
+    """)
+    
+    # Formula dasar regresi linear
+    st.subheader('Formula Regresi Linear')
+    st.latex(r'''
+        y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon
+    ''')
+    st.write("""
+        Di mana:
+        - **y**: Nilai yang ingin diprediksi (biaya asuransi dalam kasus ini).
+        - **x₁, x₂, ..., xₙ**: Variabel independen (umur, BMI, jumlah anak, dsb.).
+        - **β₀**: Intersep atau bias.
+        - **β₁, β₂, ..., βₙ**: Koefisien regresi (mengukur pengaruh masing-masing fitur terhadap prediksi).
+        - **ε**: Galat atau noise.
+    """)
+
+    # Langkah-langkah pembuatan model
+    st.subheader('Langkah-langkah Membuat Model')
+    st.write("""
+        1. **Persiapan Data**:
+           - Dataset diolah agar tidak ada nilai kosong atau data tidak valid.
+           - Fitur seperti jenis kelamin, status merokok, dan wilayah dikodekan menjadi nilai numerik.
+        2. **Split Dataset**:
+           - Dataset dibagi menjadi data pelatihan (training) dan data pengujian (testing) untuk menghindari overfitting.
+        3. **Pelatihan Model**:
+           - Model dilatih menggunakan algoritma regresi linear pada data pelatihan.
+        4. **Evaluasi Model**:
+           - Model diuji dengan data pengujian menggunakan metrik seperti *Mean Squared Error (MSE)* atau *R² Score* untuk mengukur performa prediksi.
+    """)
+
+    # Visualisasi hubungan linear sederhana (contoh visual)
+    st.subheader('Visualisasi Hubungan Linear (Contoh)')
+    st.write("""
+        Hubungan antara BMI dan Biaya Asuransi menunjukkan pola linear sederhana, 
+        terutama untuk kategori perokok yang cenderung memiliki biaya lebih tinggi.
+    """)
+    plt.figure(figsize=(8, 5))
+    sns.regplot(data=df, x='bmi', y='charges', scatter_kws={'alpha':0.5}, line_kws={'color':'red'})
+    plt.title('Hubungan BMI dan Charges')
+    plt.xlabel('BMI')
+    plt.ylabel('Charges')
+    st.pyplot(plt.gcf())
+
+    # Kelebihan dan Kekurangan Regresi Linear
+    st.subheader('Kelebihan dan Kekurangan Regresi Linear')
+    st.write("""
+        **Kelebihan**:
+        - Sederhana dan mudah dipahami.
+        - Cepat dalam pelatihan untuk dataset yang kecil.
+        - Interpretasi koefisien regresi jelas.
+
+        **Kekurangan**:
+        - Sensitif terhadap outlier.
+        - Kurang cocok untuk hubungan yang tidak linear.
+        - Performanya menurun jika fitur memiliki multikolinearitas.
     """)
